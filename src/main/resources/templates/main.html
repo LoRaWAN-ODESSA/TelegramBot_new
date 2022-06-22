@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Имя <span class="badge bg-secondary"><th:block th:text="${chat[0].firstName}"></th:block></span></h1>
+<h1>Фамилия <span class="badge bg-secondary"><th:block th:text="${chat[0].lastName}"></th:block></span></h1>
+<h1>Логин <span class="badge bg-secondary"><th:block th:text="${chat[0].userName}"></th:block></span></h1><br>
+<div class="card" style="width: 58rem;" alt="center">
+    <h3>Родитель Критикущий (Рк)</h3>
+    <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" th:attr="style='width: '" th:attrappend="style=${av_p1 + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><th:block th:text="${chat[0].p1}"></th:block></div>
+    </div><br>
+
+    <h3>Родитель Заботящийся (Рз)</h3>
+    <div class="progress">
+        <div class="progress-bar bg-info" role="progressbar" th:attr="style='width: '" th:attrappend="style=${av_p2 + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><th:block th:text="${chat[0].p2}"></th:block></div>
+    </div><br>
+
+    <h3>Взрослый (В)</h3>
+    <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" th:attr="style='width: '" th:attrappend="style=${av_p3 + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><th:block th:text="${chat[0].p3}"></th:block></div>
+    </div><br>
+
+    <h3>Дитя Естественное (Де)</h3>
+    <div class="progress">
+        <div class="progress-bar bg-danger" role="progressbar" th:attr="style='width: '" th:attrappend="style=${av_p4 + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><th:block th:text="${chat[0].p4}"></th:block></div>
+    </div><br>
+
+    <h3>Дитя Адаптированное (Да)</h3>
+    <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" th:attr="style='width: '" th:attrappend="style=${av_p5 + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><th:block th:text="${chat[0].p5}"></th:block></div>
+    </div><br>
+
+    <h3>Дитя Бунтующее (Дб)</h3>
+    <div class="progress">
+        <div class="progress-bar bg-info" role="progressbar" th:attr="style='width: '" th:attrappend="style=${av_p6 + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><th:block th:text="${chat[0].p6}"></th:block></div>
+    </div><br>
+
+    <h3>Маленький Профессор (Мп)</h3>
+    <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" th:attr="style='width: '" th:attrappend="style=${av_p7 + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><th:block th:text="${chat[0].p7}"></th:block></div>
+    </div><br>
+</div>
+
+</body>
+</html>
