@@ -23,20 +23,14 @@ public class Chat {
     private Integer p6;
     private Integer p7;
     private Integer p8;
+    private int numQuestion;
 
-    public Chat(long id, String firstName, String lastName, String userName, Integer p1, Integer p2, Integer p3, Integer p4, Integer p5, Integer p6, Integer p7, Integer p8) {
+    public Chat(long id, String firstName, String lastName, String userName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
-        this.p1 = p1;
-        this.p2 = p2;
-        this.p3 = p3;
-        this.p4 = p4;
-        this.p5 = p5;
-        this.p6 = p6;
-        this.p7 = p7;
-        this.p8 = p8;
+        numQuestion = 0;
     }
 
     public Chat() {
@@ -106,5 +100,46 @@ public class Chat {
     public Integer getP8() {
         return p8;
     }
+
+    public int getNumQuestion() {
+        return numQuestion;
+    }
+
+    public void setNumQuestion(int numQuestion) {
+        this.numQuestion = numQuestion;
+    }
+
+    public void setP1(Integer p1) {
+        this.p1 = p1;
+    }
+
+    public void setP2(Integer p2) {
+        this.p2 = p2;
+    }
+
+    public void setP3(Integer p3) {
+        this.p3 = p3;
+    }
+
+    public void setP4(Integer p4) {
+        this.p4 = p4;
+    }
+
+    public void setP5(Integer p5) {
+        this.p5 = p5;
+    }
+
+    public void setP6(Integer p6) {
+        this.p6 = p6;
+    }
+
+    public void setP7(Integer p7) {
+        this.p7 = p7;
+    }
+
+    public void setP8(Integer p8) {
+        this.p8 = p8;
+    }
+
 }
 
