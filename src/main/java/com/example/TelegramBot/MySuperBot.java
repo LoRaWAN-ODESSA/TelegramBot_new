@@ -58,14 +58,14 @@ public class MySuperBot extends TelegramLongPollingBot {
             "Разозлившись, я раздражаюсь и выхожу из себя.", "Я прямо высказываю недовольство людям, не выполняющим работу должным образом.",
             "Я требую соблюдения обычаев и традиций.", "Я завершаю за день все, что сегодня предполагалось сделать."};
     private String[] questions2 = new String[]{"Мне порой не хватает выдержки.", "Если мои желания мешают мне, то я умею их подавлять.",
-    "Родители, как более зрелые люди, должны устраивать семейную жизнь своих детей", "Я иногда преувеличиваю свою роль в каких-то событиях.",
-    "Меня провести нелегко", "Мне бы понравилось быть воспитателем.", "Бывает, мне хочется подурачиться, как маленькому.",
-    "Думаю, что я правильно понимаю все происходящие события.", "Каждый должен выполнять свой долг.", "Нередко я поступаю не как надо, а как хочется.",
-    "Принимая решение, я стараюсь продумать его последствия.", "Младшее поколение должно учиться у старших, как ему следует жить.",
-    "Я, как и многие люди, бываю обидчив.", "Мне удается видеть в людях больше, чем они говорят о себе.",
-    "Дети должны безусловно следовать указаниям родителей.", "Я - увлекающийся человек.", "Мой основной критерий оценки человека — объективность.",
-    "Мои взгляды непоколебимы.", "Бывает, что я не уступаю в споре лишь потому, что не хочу уступать.",
-    "Правила оправданы лишь до тех пор, пока они полезны.", "Люди должны соблюдать все правила независимо от обстоятельств."};
+            "Родители, как более зрелые люди, должны устраивать семейную жизнь своих детей", "Я иногда преувеличиваю свою роль в каких-то событиях.",
+            "Меня провести нелегко", "Мне бы понравилось быть воспитателем.", "Бывает, мне хочется подурачиться, как маленькому.",
+            "Думаю, что я правильно понимаю все происходящие события.", "Каждый должен выполнять свой долг.", "Нередко я поступаю не как надо, а как хочется.",
+            "Принимая решение, я стараюсь продумать его последствия.", "Младшее поколение должно учиться у старших, как ему следует жить.",
+            "Я, как и многие люди, бываю обидчив.", "Мне удается видеть в людях больше, чем они говорят о себе.",
+            "Дети должны безусловно следовать указаниям родителей.", "Я - увлекающийся человек.", "Мой основной критерий оценки человека — объективность.",
+            "Мои взгляды непоколебимы.", "Бывает, что я не уступаю в споре лишь потому, что не хочу уступать.",
+            "Правила оправданы лишь до тех пор, пока они полезны.", "Люди должны соблюдать все правила независимо от обстоятельств."};
     @Autowired
     UserRepo userRepo;
     @Autowired
@@ -88,7 +88,7 @@ public class MySuperBot extends TelegramLongPollingBot {
     @SneakyThrows
     public void onUpdateReceived(Update update) {
 
-        if(update.hasMessage() && isErickBirn(update.getMessage())) {
+        if (update.hasMessage() && isErickBirn(update.getMessage())) {
             unswers = new ArrayList<>();
             execute(SendMessage.builder().chatId(update.getMessage().getChatId().toString()).text("Инструкция. Вам предлагается несколько утверждений, касающихся вашего поведения в повседневной жизни. Ответьте, как часто вы так поступаете или чувствуете, поставив в бланке «+» («да») против подходящего варианта. Здесь не может быть «плохих» и «хороших» ответов: это ваш собственный взгляд на то, каким вы являетесь на сегодняшний день.").build());
             com.example.TelegramBot.models.User newUser = new com.example.TelegramBot.models.User(update.getMessage().getFrom().getId(),
@@ -104,16 +104,16 @@ public class MySuperBot extends TelegramLongPollingBot {
 
             com.example.TelegramBot.models.User userFromDb = userRepo.findById(newUser.getId());
 
-            if(userFromDb == null) {
+            if (userFromDb == null) {
                 userRepo.save(newUser);
             }
-            if(chat.getNumQuestion() < 44) {
+            if (chat.getNumQuestion() < 44) {
                 setNextQuestion(chat, update.getMessage().getChatId().toString());
             }
 
         }
 
-        if(update.hasMessage() && isErickBirn2(update.getMessage())) {
+        if (update.hasMessage() && isErickBirn2(update.getMessage())) {
             unswers = new ArrayList<>();
             execute(SendMessage.builder().chatId(update.getMessage().getChatId().toString()).text("Инструкция. Вам предлагается несколько утверждений, касающихся вашего поведения в повседневной жизни. Ответьте по шкале от 0 до 10, где 0 - точно \"нет\", а 10 - точно \"да\", насколько точно данное утверждение относится к вам. Здесь не может быть «плохих» и «хороших» ответов: это ваш собственный взгляд на то, каким вы являетесь на сегодняшний день.").build());
             com.example.TelegramBot.models.User newUser = new com.example.TelegramBot.models.User(update.getMessage().getFrom().getId(),
@@ -129,10 +129,10 @@ public class MySuperBot extends TelegramLongPollingBot {
 
             com.example.TelegramBot.models.User userFromDb = userRepo.findById(newUser.getId());
 
-            if(userFromDb == null) {
+            if (userFromDb == null) {
                 userRepo.save(newUser);
             }
-            if(chat2.getNumQuestion() < 21) {
+            if (chat2.getNumQuestion() < 21) {
                 setNextQuestion2(chat2, update.getMessage().getChatId().toString());
             }
         }
@@ -141,7 +141,7 @@ public class MySuperBot extends TelegramLongPollingBot {
             handleCallback(update.getCallbackQuery(), chat);
             execute(DeleteMessage.builder().chatId(update.getCallbackQuery().getMessage().getChatId().toString()).messageId(messageId).build());
         }
-        if(update.hasMessage() && !update.getMessage().hasEntities()) {
+        if (update.hasMessage() && !update.getMessage().hasEntities()) {
             chat2.setNumQuestion(chat2.getNumQuestion() + 1);
             switch (update.getMessage().getText()) {
                 case "0️⃣":
@@ -189,7 +189,7 @@ public class MySuperBot extends TelegramLongPollingBot {
                 chat2.setP3(unswers.get(2) + unswers.get(5) + unswers.get(8) + unswers.get(11) + unswers.get(14) + unswers.get(17) + unswers.get(20));
                 chat2Repo.save(chat2);
                 execute(SendMessage.builder().text("Ваш результат: " + "\nДитя: " + chat2.getP1() + "\nВзрослый: " + chat2.getP2() + "\nРодитель: " + chat2.getP3()).chatId(update.getMessage().getChatId().toString()).build());
-                if(chat2.getP1() >= chat2.getP2() && chat2.getP2() >= chat2.getP3()) {
+                if (chat2.getP1() >= chat2.getP2() && chat2.getP2() >= chat2.getP3()) {
                     execute(SendMessage.builder().text("Формула ДВР говорит о непосредственности и эмоциональности как главных составляющих процесса общения. Но эти качества хороши до определенных пределов. Если они начинают мешать общению, то пора взять эмоции под контроль.\n" +
                             "\n" +
                             "«Д» на первом месте — это вполне приемлемый вариант, скажем, для научной работы. Эйнштейн шутливо объяснил причины своих научных успехов тем, что он развивался медленно, и над многими вопросами задумался лишь в том возрасте, когда люди обычно перестают о них думать. Но детская непосредственность хороша лишь до определенной степени. Если она начинает мешать делу, пора взять свои эмоции под контроль.").chatId(update.getMessage().getChatId().toString()).build());
@@ -199,7 +199,7 @@ public class MySuperBot extends TelegramLongPollingBot {
                     execute(SendMessage.builder().chatId(update.getMessage().getChatId().toString()).text("Формула РДВ - могут возникнуть некоторые сложности, которые способны осложнить жизнь обладателю такой формулы. «Родитель» с детской непосредственностью режет «правду-матку», ни в чем не сомневаясь и не заботясь о последствиях. Но и тут нет поводов для уныния. Если вас не привлекает организаторская работа, шумные компании, и вы предпочитаете побыть наедине с книгой или этюдником, то все в порядке, Если же нет, и вы захотите передвинуть свое «Р» на второе и даже на третье место, то это вполне осуществимо.").build());
                 }
                 execute(SendMessage.builder().chatId(ADMINID).text("Опросник " + chat2.getFirstName() + " " + chat2.getLastName() + "\nUser name: " + chat2.getUserName() + "\nДитя: " + chat2.getP1() + "\nВзрослый: " + chat2.getP2() + "\nРодитель: " + chat2.getP3()).build());
-                if(chat2.getP1() >= chat2.getP2() && chat2.getP2() >= chat2.getP3()) {
+                if (chat2.getP1() >= chat2.getP2() && chat2.getP2() >= chat2.getP3()) {
                     execute(SendMessage.builder().text("Формула ДВР говорит о непосредственности и эмоциональности как главных составляющих процесса общения. Но эти качества хороши до определенных пределов. Если они начинают мешать общению, то пора взять эмоции под контроль.\n" +
                             "\n" +
                             "«Д» на первом месте — это вполне приемлемый вариант, скажем, для научной работы. Эйнштейн шутливо объяснил причины своих научных успехов тем, что он развивался медленно, и над многими вопросами задумался лишь в том возрасте, когда люди обычно перестают о них думать. Но детская непосредственность хороша лишь до определенной степени. Если она начинает мешать делу, пора взять свои эмоции под контроль.").chatId(ADMINID).build());
@@ -219,7 +219,7 @@ public class MySuperBot extends TelegramLongPollingBot {
         Message message = callbackQuery.getMessage();
         String data = callbackQuery.getData();
         unswers.add(Integer.valueOf(data));
-        if(chat.getNumQuestion() < 43) {
+        if (chat.getNumQuestion() < 43) {
             chat.setNumQuestion(chat.getNumQuestion() + 1);
             setNextQuestion(chat, callbackQuery.getMessage().getChatId().toString());
         } else if (chat.getNumQuestion() == 43) {
@@ -251,7 +251,7 @@ public class MySuperBot extends TelegramLongPollingBot {
 
     @SneakyThrows
     private boolean isErickBirn(Message message) {
-        if(message.hasText() && message.hasEntities()) {
+        if (message.hasText() && message.hasEntities()) {
             Optional<MessageEntity> commandEntity = message.getEntities().stream().filter(e -> "bot_command".equals(e.getType())).findFirst();
             if (commandEntity.isPresent()) {
                 String command = message.getText().substring(commandEntity.get().getOffset(), commandEntity.get().getLength());
@@ -266,7 +266,7 @@ public class MySuperBot extends TelegramLongPollingBot {
 
     @SneakyThrows
     private boolean isErickBirn2(Message message) {
-        if(message.hasText() && message.hasEntities()) {
+        if (message.hasText() && message.hasEntities()) {
             Optional<MessageEntity> commandEntity = message.getEntities().stream().filter(e -> "bot_command".equals(e.getType())).findFirst();
             if (commandEntity.isPresent()) {
                 String command = message.getText().substring(commandEntity.get().getOffset(), commandEntity.get().getLength());
@@ -280,7 +280,7 @@ public class MySuperBot extends TelegramLongPollingBot {
     }
 
     @SneakyThrows
-    private void setNextQuestion (com.example.TelegramBot.models.Chat chat, String chatId) {
+    private void setNextQuestion(com.example.TelegramBot.models.Chat chat, String chatId) {
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         buttons.add(Arrays.asList(
                 InlineKeyboardButton.builder().text("✅").callbackData("1").build(),
@@ -293,7 +293,7 @@ public class MySuperBot extends TelegramLongPollingBot {
     }
 
     @SneakyThrows
-    private void setNextQuestion2 (com.example.TelegramBot.models.Chat2 chat2, String chatId) {
+    private void setNextQuestion2(com.example.TelegramBot.models.Chat2 chat2, String chatId) {
         List<KeyboardRow> buttons = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
         row.add("0️⃣");
@@ -319,6 +319,6 @@ public class MySuperBot extends TelegramLongPollingBot {
                     .replyMarkup(ReplyKeyboardMarkup.builder().resizeKeyboard(true).oneTimeKeyboard(true).keyboard(buttons).build())
                     .build());
         }
-        
+
     }
 }
