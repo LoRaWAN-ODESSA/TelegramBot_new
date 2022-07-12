@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 @Controller
 public class ChartController {
@@ -20,7 +19,7 @@ public class ChartController {
     ChatRepo chatRepo;
 
     @GetMapping("/{id}")
-    public String getChart (@PathVariable (value = "id") long id, Model model) {
+    public String getChart(@PathVariable(value = "id") long id, Model model) {
         Optional<Chat> data = chatRepo.findById(id);
         ArrayList<Chat> res = new ArrayList<>();
         data.ifPresent(res::add);
